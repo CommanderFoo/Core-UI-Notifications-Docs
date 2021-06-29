@@ -16,7 +16,7 @@
     
     
       
-        <title>Types - UI Notifications</title>
+        <title>Replacements - UI Notifications</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#types" class="md-skip">
+        <a href="#replacements" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Types
+              Replacements
             
           </span>
         </div>
@@ -363,20 +363,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../types/" class="md-nav__link">
         Types
       </a>
-      
     </li>
   
 
@@ -420,11 +411,49 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../replacements/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Replacements
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Replacements
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -589,8 +618,8 @@
               
                 
                 
-                <h1 id="types">Types</h1>
-<p>There are 5 types of notifications this system supports.</p>
+                <h1 id="replacements">Replacements</h1>
+<p>The following list of replacements can be used in notification messages.</p>
 <table>
 <thead>
 <tr>
@@ -600,36 +629,47 @@
 </thead>
 <tbody>
 <tr>
-<td><code>INFO</code></td>
-<td>A notification to display some information to the player.</td>
+<td><code>{name}</code></td>
+<td>This will be replaced by the name of the player.</td>
 </tr>
 <tr>
-<td><code>SUCCESS</code></td>
-<td>A notification to show that something was successful for the player.</td>
+<td><code>{id}</code></td>
+<td>This will be replaced by the ID of the player.</td>
 </tr>
 <tr>
-<td><code>WARNING</code></td>
-<td>A notification to show a warning to the player (i.e "Inventory is nearly full.").</td>
+<td><code>{hitpoints}</code></td>
+<td>This will be replaced with the current hit points (aka health) of the player.</td>
 </tr>
 <tr>
-<td><code>ERROR</code></td>
-<td>A notification to show an error to the player.</td>
+<td><code>{maxhitpoints}</code></td>
+<td>This will be replaced with the max hit points (aka max halth) of the player.</td>
 </tr>
 <tr>
-<td><code>GENERAL</code></td>
-<td>This is a special type of notification that can be used for just general things.</td>
+<td><code>{kills}</code></td>
+<td>This will be replaced with the total kills the player has got.</td>
+</tr>
+<tr>
+<td><code>{deaths}</code></td>
+<td>This will be replaced with the total deaths the player has got.</td>
+</tr>
+<tr>
+<td><code>{maxjumpcount}</code></td>
+<td>This will be replaced with the max jump count the player can do.</td>
+</tr>
+<tr>
+<td><code>{resource=RESOURCE}</code></td>
+<td>This will be replaced with the resource amount.  See the Resource section below for more information.</td>
 </tr>
 </tbody>
 </table>
+<h2 id="resources"><span style="color: yellow">Resources</span></h2>
+<p>Resource replacement variables support a few additional parameters to handle displaying it to the player so it reads correct.</p>
+<p>How many games do you see that don't handle the plural of something like "Coins".  Reading "You have 12 Coin" is not a hard problem to solve but is often overlooked.  So the resource replacement variable will handle this for you.</p>
+<p><code>resource=coins,true,true</code></p>
+<p>The 2 parameters after the type and value <code>resource=coin</code> tells the system to include the resource name, and handle the plural for you.</p>
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">Events</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="s2">&quot;show_notification&quot;</span><span class="p">,</span> <span class="s2">&quot;An error has occurred.&quot;</span><span class="p">,</span> <span class="p">{</span>
-
-    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;ERROR&quot;</span>
-
-<span class="p">})</span>
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">Events</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="s2">&quot;show_notification&quot;</span><span class="p">,</span> <span class="s2">&quot;Hello {name}.&quot;</span><span class="p">)</span>
+<span class="n">Events</span><span class="p">.</span><span class="n">Broadcast</span><span class="p">(</span><span class="s2">&quot;show_notification&quot;</span><span class="p">,</span> <span class="s2">&quot;Hello, you have {resource=coins,true,true}.&quot;</span><span class="p">)</span>
 </code></pre></div>
 </td></tr></table>
                 
@@ -650,7 +690,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../screen-positions/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../events/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -659,19 +699,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Screen Positions
+                Events
               </div>
             </div>
           </a>
         
         
-          <a href="../custom-template/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../credits/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Custom Template
+                Credits
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
