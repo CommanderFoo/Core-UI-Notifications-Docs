@@ -25,6 +25,8 @@ Below are all the properties you can set when making a call to the API.
 | `on_complete` | The function to call when the notification is completed (i.e removed). |
 | `on_start` | The function to call when the notification is created. |
 | `dynamic` | If true, and using a `GENERAL` type of notification, the system will attempt to dynamically set the height. |
+| `text_color` | Changed the color of the text. |
+| `background_color` | Change the color of the background, this should be used on the `GENERAL` type, or custom templates, otherwise icons will look out of place. |
 
 Below is an example of using some of these properties.
 
